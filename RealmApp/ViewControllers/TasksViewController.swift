@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TasksViewController: UITableViewController {
+final class TasksViewController: UITableViewController {
     
     var taskList: TaskList!
     
@@ -29,6 +29,8 @@ class TasksViewController: UITableViewController {
             action: #selector(addButtonPressed)
         )
         navigationItem.rightBarButtonItems = [addButton, editButtonItem]
+        currentTasks = taskList.tasks.filter("isComplete = false")
+        completedTasks = taskList.tasks.filter("isComplete = true")
     }
     
     // MARK: - Table view data source
@@ -57,6 +59,10 @@ class TasksViewController: UITableViewController {
     @objc private func addButtonPressed() {
         showAlert()
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return nil
+    }
 
 }
 
@@ -64,7 +70,8 @@ extension TasksViewController {
     private func showAlert(with task: Task? = nil, completion: (() -> Void)? = nil) {
         let title = task != nil ? "Edit Task" : "New Task"
         
-        let alert = UIAlertController.createAlert(withTitle: title, andMessage: "What do you want to do?")
+        let alert = UIAlertController.createAlert(withTitle: title,
+                                                  andMessage: "What do you want to do?")
         
         alert.action(with: task) { newValue, note in
             if let _ = task, let _ = completion {

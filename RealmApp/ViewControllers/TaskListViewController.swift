@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TaskListViewController: UITableViewController {
+final class TaskListViewController: UITableViewController {
 
     var taskLists: Results<TaskList>!
     
