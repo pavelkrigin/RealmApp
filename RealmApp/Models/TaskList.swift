@@ -21,3 +21,4 @@ class Task: Object {
     @Persisted var date = Date()
     @Persisted var isComplete = false
 }
+

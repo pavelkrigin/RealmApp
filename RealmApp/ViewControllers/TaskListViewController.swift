@@ -124,3 +124,4 @@ extension TaskListViewController {
         tableView.insertRows(at: [rowIndex], with: .automatic)
     }
 }
+

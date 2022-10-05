@@ -85,3 +85,4 @@ extension TasksViewController {
         tableView.insertRows(at: [rowIndex], with: .automatic)
     }
 }
+
